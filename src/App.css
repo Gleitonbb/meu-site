@@ -1,0 +1,119 @@
+/* Configurações Globais básicas */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+.app-container {
+  min-height: 100vh;
+  background-color: #f9f9f9;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  height: 60px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  position: relative;
+  z-index: 10;
+}
+
+.botao-hamburguer {
+  background: none;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+  color: #333;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.espaco-vazio {
+  width: 30px; /* Apenas para equilibrar o flexbox do flex space-between */
+}
+
+/* Sidebar (Menu Lateral) */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -280px; /* Começa escondido totalmente à esquerda */
+  width: 280px;
+  height: 100vh;
+  background-color: #ffffff;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+  z-index: 100;
+  transition: left 0.3s ease; /* Faz o efeito de deslizar suave */
+  padding: 20px;
+}
+
+/* Classe aplicada via React quando o estado 'menuAberto' for true */
+.sidebar.aberto {
+  left: 0;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.botao-fechar {
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: #666;
+}
+
+/* Links do Menu */
+.sidebar-links ul {
+  list-style: none;
+}
+
+.sidebar-links li {
+  margin-bottom: 20px;
+}
+
+.sidebar-links a {
+  text-decoration: none;
+  color: #333;
+  font-size: 18px;
+  display: block;
+  padding: 8px 4px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.sidebar-links a:hover {
+  background-color: #f0f0f0;
+  color: #000;
+}
+
+/* Overlay (Fundo escuro atrás do menu) */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 99;
+}
+
+/* Conteúdo da página */
+.conteudo-principal {
+  padding: 40px 20px;
+  text-align: center;
+}
