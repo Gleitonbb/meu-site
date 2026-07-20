@@ -1,0 +1,22 @@
+.pagina-masculino {
+  padding: 20px;
+  font-family: sans-serif;
+}
+
+.masculino-header h2 {
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.masculino-header p {
+  color: #27ae60; /* Verde para indicar sucesso */
+  font-weight: bold;
+}
+
+.card-teste {
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-left: 5px solid #2980b9; /* Barrinha azul de destaque */
+  border-radius: 4px;
+  margin-top: 20px;
+}

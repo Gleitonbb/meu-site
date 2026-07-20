@@ -1,12 +1,23 @@
 import { useState } from 'react';
 import './App.css';
+import logo from '../imagem/minha-logo02.png';
+import iconeHome from '../imagem/icone-home.png';
+
+// IMPORTANDO TODAS AS SUAS PÁGINAS
+import Home from './pages/home';
+import Masculino from './pages/masculino';
+import Feminino from './pages/feminino';
+import Esportes from './pages/esportes';
+import Calcados from './pages/calcados';
+import Acessorios from './pages/acessorios';
+import FaleConosco from './pages/fleConosco';
 
 function App() {
-  // Estado para controlar se o menu está aberto ou fechado
   const [menuAberto, setMenuAberto] = useState(false);
+  const [telaAtiva, setTelaAtiva] = useState('Home');
 
-  // Lista de opções do menu lateral
   const opcoesMenu = [
+    'Home',
     'Masculino',
     'Feminino',
     'Calçados',
@@ -16,56 +27,82 @@ function App() {
     'Troca'
   ];
 
+  const navegarPara = (opcao) => {
+    setTelaAtiva(opcao);
+    setMenuAberto(false);
+  };
+
   return (
     <div className="app-container">
-      {/* --- CORDÃO SUPERIOR / NAVBAR --- */}
+      {/* NAVBAR */}
       <header className="navbar">
-        {/* Botão Hambúrguer */}
-        <button 
-          className="botao-hamburguer" 
-          onClick={() => setMenuAberto(true)}
-          aria-label="Abrir menu"
-        >
-          &#9776; {/* Símbolo Unicode para o menu hambúrguer */}
+        <button className="botao-hamburguer" onClick={() => setMenuAberto(true)} aria-label="Abrir menu">
+          &#9776;
         </button>
 
-        <div className="logo">Minha Loja</div>
-        <div className="espaco-vazio"></div>
+        {/* LOGO SUBSTITUÍDA POR IMAGEM */}
+        <div className="logo-container" onClick={() => setTelaAtiva('Home')}>
+          <img src={logo} alt="Logo Malavada" className="logo-img" />
+        </div>
+
+        {/* BOTÃO HOME COM ÍCONE */}
+        <button className="botao-home" onClick={() => setTelaAtiva('Home')} aria-label="Voltar para o início">
+          <img src={iconeHome} alt="Início" className="icone-home-img" />
+        </button>
       </header>
 
-      {/* --- MENU LATERAL (SIDEBAR) --- */}
-      {/* Se menuAberto for true, adiciona a classe 'aberto' */}
+      {/* SIDEBAR */}
       <aside className={`sidebar ${menuAberto ? 'aberto' : ''}`}>
         <div className="sidebar-header">
           <h3>Categorias</h3>
-          {/* Botão para fechar o menu */}
-          <button className="botao-fechar" onClick={() => setMenuAberto(false)}>
-            &times; {/* Símbolo Unicode para o 'X' de fechar */}
-          </button>
+          <button className="botao-fechar" onClick={() => setMenuAberto(false)}>&times;</button>
         </div>
 
         <nav className="sidebar-links">
           <ul>
             {opcoesMenu.map((opcao, index) => (
               <li key={index}>
-                <a href={`#${opcao.toLowerCase().replace(' ', '-')}`} onClick={() => setMenuAberto(false)}>
+                <button
+                  className="link-menu"
+                  onClick={() => navegarPara(opcao)}
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    font: 'inherit',
+                    cursor: 'pointer',
+                    width: '100%',
+                    textAlign: 'left',
+                    padding: '10px 0'
+                  }}
+                >
                   {opcao}
-                </a>
+                </button>
               </li>
             ))}
           </ul>
         </nav>
       </aside>
 
-      {/* Fundo escuro atrás do menu quando ele estiver aberto */}
-      {menuAberto && (
-        <div className="overlay" onClick={() => setMenuAberto(false)}></div>
-      )}
+      {menuAberto && <div className="overlay" onClick={() => setMenuAberto(false)}></div>}
 
-      {/* --- CONTEÚDO PRINCIPAL DA PÁGINA --- */}
+      {/* CONTEÚDO PRINCIPAL DINÂMICO */}
       <main className="conteudo-principal">
-        <h1>Bem-vindo à nossa loja!</h1>
-        <p>Clique no menu hambúrguer no canto superior esquerdo para navegar pelas categorias.</p>
+
+        {telaAtiva === 'Home' && <Home />}
+        {telaAtiva === 'Masculino' && <Masculino />}
+        {telaAtiva === 'Feminino' && <Feminino />}
+        {telaAtiva === 'Esportes' && <Esportes />}
+        {telaAtiva === 'Calçados' && <Calcados />}
+        {telaAtiva === 'Acessórios' && <Acessorios />}
+        {telaAtiva === 'Fale Conosco' && <FaleConosco />}
+
+        {telaAtiva === 'Troca' && (
+          <div>
+            <h1>Página de Trocas</h1>
+            <p>Em breve você poderá gerenciar suas trocas e devoluções aqui.</p>
+          </div>
+        )}
+
       </main>
     </div>
   );

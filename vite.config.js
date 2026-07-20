@@ -1,8 +1,16 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/meu-site/', 
+  base: '/',
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://malavada.shop',
+        changeOrigin: true,
+        secure: true
+      }
+    }
+  }
 })

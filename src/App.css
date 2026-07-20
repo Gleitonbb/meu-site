@@ -1,4 +1,6 @@
-/* Configurações Globais básicas */
+/* ==========================================================================
+   Configurações Globais Básicas
+   ========================================================================== */
 * {
   margin: 0;
   padding: 0;
@@ -11,51 +13,93 @@
   background-color: #f9f9f9;
 }
 
-/* Navbar */
+/* ==========================================================================
+   Navbar (Barra Superior)
+   ========================================================================== */
 .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
-  height: 60px;
-  background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 10px 20px;
+  height: 70px;
+  background-color: #425d86;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
   position: relative;
   z-index: 10;
+  box-sizing: border-box;
 }
 
 .botao-hamburguer {
   background: none;
   border: none;
-  font-size: 30px;
+  font-size: 28px;
   cursor: pointer;
-  color: #333;
+  color: #ffffff;
+  line-height: 1;
+  flex-shrink: 0;
 }
 
-.logo {
-  font-size: 20px;
-  font-weight: bold;
+/* CONTAINER DA LOGO */
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  height: 100%;
+  max-width: 145px;
+  flex: 1;
+  transition: opacity 0.2s ease;
 }
 
-.espaco-vazio {
-  width: 30px; /* Apenas para equilibrar o flexbox do flex space-between */
+.logo-container:hover {
+  opacity: 0.9;
 }
 
-/* Sidebar (Menu Lateral) */
+.logo-img {
+  max-width: 250%;
+  max-height: 165px;
+  height: auto;
+  width: auto;
+  margin-top: 15px;
+  object-fit: contain;
+}
+
+/* BOTÃO HOME */
+.botao-home {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.icone-home-img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+/* ==========================================================================
+   Sidebar (Menu Lateral)
+   ========================================================================== */
 .sidebar {
   position: fixed;
   top: 0;
-  left: -280px; /* Começa escondido totalmente à esquerda */
+  left: -280px;
   width: 280px;
+  max-width: 80vw;
   height: 100vh;
   background-color: #ffffff;
-  box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
   z-index: 100;
-  transition: left 0.3s ease; /* Faz o efeito de deslizar suave */
+  transition: left 0.3s ease;
   padding: 20px;
+  box-sizing: border-box;
 }
 
-/* Classe aplicada via React quando o estado 'menuAberto' for true */
 .sidebar.aberto {
   left: 0;
 }
@@ -77,31 +121,36 @@
   color: #666;
 }
 
-/* Links do Menu */
 .sidebar-links ul {
   list-style: none;
 }
 
 .sidebar-links li {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
-.sidebar-links a {
-  text-decoration: none;
+.link-menu {
+  background: none;
+  border: none;
   color: #333;
   font-size: 18px;
   display: block;
-  padding: 8px 4px;
+  padding: 10px 8px;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
   border-radius: 4px;
-  transition: background 0.2s;
+  transition: background 0.2s, color 0.2s;
 }
 
-.sidebar-links a:hover {
+.link-menu:hover {
   background-color: #f0f0f0;
   color: #000;
 }
 
-/* Overlay (Fundo escuro atrás do menu) */
+/* ==========================================================================
+   Overlay (Fundo escuro atrás do menu)
+   ========================================================================== */
 .overlay {
   position: fixed;
   top: 0;
@@ -112,8 +161,96 @@
   z-index: 99;
 }
 
-/* Conteúdo da página */
+/* ==========================================================================
+   Conteúdo Central da Página
+   ========================================================================== */
 .conteudo-principal {
   padding: 40px 20px;
+}
+
+.home-content {
   text-align: center;
+}
+
+.home-content h1 {
+  font-size: 32px;
+  color: #222;
+  margin-bottom: 15px;
+}
+
+.home-content p {
+  font-size: 16px;
+  color: #666;
+}
+
+/* ==========================================================================
+   Responsivo — Tablet
+   ========================================================================== */
+@media (max-width: 768px) {
+  .navbar {
+    height: 64px;
+    padding: 8px 16px;
+  }
+
+  .logo-img {
+    max-height: 145px;
+  }
+
+  .icone-home-img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .conteudo-principal {
+    padding: 24px 16px;
+  }
+
+  .home-content h1 {
+    font-size: 26px;
+  }
+}
+
+/* ==========================================================================
+   Responsivo — Celular
+   ========================================================================== */
+@media (max-width: 480px) {
+  .navbar {
+    height: 56px;
+    padding: 6px 12px;
+  }
+
+  .logo-container {
+    max-width: 120px;
+  }
+
+  .logo-img {
+    margin-top: 15px;
+    max-height: 145px;
+    margin-left: 60px;
+  }
+
+  .botao-hamburguer {
+    font-size: 24px;
+  }
+
+  .icone-home-img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .sidebar {
+    width: 240px;
+  }
+
+  .conteudo-principal {
+    padding: 16px 12px;
+  }
+
+  .home-content h1 {
+    font-size: 22px;
+  }
+
+  .home-content p {
+    font-size: 14px;
+  }
 }
